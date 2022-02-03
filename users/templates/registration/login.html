@@ -1,0 +1,42 @@
+{% extends "../form_base.html" %}
+
+{% comment %} {% block para %} Login as Client {% endblock para %} {% endcomment %}
+{% comment %} {% block action %} login-client {% endblock action %}  {% endcomment %}
+{% block head %}Login{% endblock head %}
+{% block csrf %} {% csrf_token %} {% endblock csrf %} 
+
+{% block form %} 
+
+<div class="form-group">
+			<div class="input-group">
+				<div class="input-group-prepend">
+					<span class="input-group-text">
+						<span class="fa fa-user"></span>
+					</span>                    
+				</div>
+                {{form.username}}
+			</div>
+        </div>
+
+		 <div class="form-group">
+			<div class="input-group">
+				<div class="input-group-prepend">
+					<span class="input-group-text">
+						<span class="fa fa-lock"></span>
+					</span>                    
+				</div>
+                {{form.password}}
+			</div>
+        </div> 
+        
+
+{% endblock form %}
+
+{% block button %} Login {% endblock button %}
+
+{% block forget_password %} <div class="text-center"><a href='forget_password'> Forget password ? </a></div> {% endblock forget_password %}
+
+{% block link %} 
+	<div class="text-center">Don't have an account? <a href="{% url 'users:signup-client' %}">Signup as Client</a></div>
+	<div class="text-center">Don't have an account? <a href="{% url 'users:signup-serviceprovider' %}">Signup as Service Provider</a></div>
+{% endblock link %}

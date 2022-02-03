@@ -1,0 +1,87 @@
+{% extends "form_base.html" %}
+
+{% block action %}  {% endblock action %}
+{% block head %}Signup{% endblock head %}
+{% block csrf %} {% csrf_token %} {% endblock csrf %}
+{% block para %} <p>signup as Client</p> {% endblock para %}
+
+{% block form %}
+<div class="form-group">
+			<div class="input-group">
+				<div class="input-group-prepend">
+					<span class="input-group-text">
+						<span class="fa fa-user"></span>
+					</span>                    
+				</div>
+				{% comment %} <input type="text" class="form-control" name="username" placeholder="Username" required="required"> {% endcomment %}
+                {{form.username}}
+			</div>
+        </div>
+		 <div class="form-group">
+			<div class="input-group">
+				<div class="input-group-prepend">
+					<span class="input-group-text">
+						<span class="fa fa-chevron-circle-right"></span>
+					</span>                    
+				</div>
+				{% comment %} <input type="text" class="form-control" name="username" placeholder="Username" required="required"> {% endcomment %}
+                {{form.first_name}}
+			</div>
+        </div> <div class="form-group">
+			<div class="input-group">
+				<div class="input-group-prepend">
+					<span class="input-group-text">
+						<span class="fa fa-chevron-circle-right"></span>
+					</span>                    
+				</div>
+				{% comment %} <input type="text" class="form-control" name="username" placeholder="Username" required="required"> {% endcomment %}
+                {{form.last_name}}
+			</div>
+        </div>
+        <div class="form-group">
+			<div class="input-group">
+				<div class="input-group-prepend">
+					<span class="input-group-text">
+						<i class="fa fa-paper-plane"></i>
+					</span>                    
+				</div>
+				{% comment %} <input type="email" class="form-control" name="email" placeholder="Email Address" required="required"> {% endcomment %}
+                {{form.email}}
+			</div>
+        </div>
+		<div class="form-group">
+			<div class="input-group">
+				<div class="input-group-prepend">
+					<span class="input-group-text">
+						<i class="fa fa-lock"></i>
+					</span>                    
+				</div>
+				{% comment %} <input type="text" class="form-control" name="password" placeholder="Password" required="required"> {% endcomment %}
+                {{form.password1}}
+			</div>
+        </div>
+		<div class="form-group">
+			<div class="input-group">
+				<div class="input-group-prepend">
+					<span class="input-group-text">
+						<i class="fa fa-lock"></i>
+						<i class="fa fa-check"></i>
+					</span>                    
+				</div>
+				{% comment %} <input type="text" class="form-control" name="confirm_password" placeholder="Confirm Password" required="required"> {% endcomment %}
+                {{form.password2}}
+			</div>
+        </div>
+        <div class="form-group">
+			<label class="form-check-label"><input type="checkbox" required="required"> I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a></label>
+		</div>
+
+		{{form.errors}}
+
+{% endblock form %}
+
+{% block button %} Signup {% endblock button %}
+
+{% block link %} 
+	<div class="text-center"> Already have an account? <a href="accounts/login">Login here</a></div>
+{% endblock link %}
