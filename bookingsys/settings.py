@@ -77,23 +77,23 @@ WSGI_APPLICATION = 'bookingsys.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'bookingline',
-        'USER': 'postgres',
-        'PASSWORD' : '2233',
-        'HOST' : 'localhost',
-        'PORT' : '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'bookingline',
+#         'USER': 'postgres',
+#         'PASSWORD' : '2233',
+#         'HOST' : 'localhost',
+#         'PORT' : '5432',
+#     }
+# }
 
 
 # Password validation
