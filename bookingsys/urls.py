@@ -22,5 +22,6 @@ urlpatterns = [
     # path('login/', LoginView.as_view(), name='login'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('users', include('users.urls', namespace='users')),
+    path('serviceprovider/', include('serviceprovider.urls', namespace='serviceprovider')),
     path('', include('home.urls', namespace='home')),
 ]

@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page %}
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center header-transparent">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+      <div class="logo me-auto">
+        <h1><a href="index.html">booking Line</a></h1>
+        {% if check %}
+        <div></div>
+        {%else%}
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h5 style="color: aliceblue;">Hey, {{ client }} welcome to bookingLine</h5>
+        {% endif %}
+      </div>
+
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a class="nav-link scrollto active" href="{% url 'home:home' %}">Back To Home</a></li>
+          <li><a class="nav-link scrollto active" href="{% url 'users:dashboard-client' %}">Dash Board</a></li>
+          <li><a class="nav-link scrollto active" href="accounts/logout">Logout</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+    </div>
+  </header><!-- End Header -->
+
+
+
+
+
+<section id="why" class="why-us">
+    <div class="container">
+
+        <div class="section-title">
+            <h2> <span>Auditoriums</span></h2>
+            <p>We provide this amazing platform with wide selection of varities of auditoriums to conduct your events.</p>
+        </div>
+
+        <div class="row">
+
+            {% for i in list %}
+            <div class="col-lg-4">
+                <div class="box">
+                    <div>
+                        <div class="gallery-item">
+                            <a href="../../{{i.catelog}}" class="gallery-lightbox">
+                            <img src="../../{{i.catelog}}" alt="" class="img-fluid">
+                            </a>
+                        </div>
+                    </div>
+                    <h4>{{i.name}}</h4>
+                    <p>{{i.price}}$/hr</p>
+                    <p>{{i.street}}, {{i.district}}, {{i.state}}, {{i.post}} - {{i.pin}}</p>
+                    <form action="auditorium-info" method="post">
+                            {% csrf_token %}
+                        <button type="submit" class="book-a-table-btn" name="btn" value="{{i.id}}" id="{{i.id}}" style="background:transparent; color:black">For More Info & Booking</button>
+                    </form>
+                    {% comment %} <p>Whole service providers verified by our team and actively screening</p> {% endcomment %}
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+
+    </div>
+</section>
+
+<!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <h3>booking Line</h3>
+      <p> #some quote </p>
+      <div class="social-links">
+        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+      </div>
+      <div class="copyright">
+        &copy; Copyright <strong><span>booking Line</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        Designed and deployed by <a href="https://github.com/amjadcp/Auditorium-Booking-System-mini-project-groupA">Group A</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></a>
+
+{%endblock page%}

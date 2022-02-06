@@ -15,132 +15,121 @@
       </style>
     </head>
     <body>
-        {% comment %} {% csrf_token %}
-        Hey {{ service }}
-        <a href={% url 'upload_data' %}>Upload Data</a> {% endcomment %}
         <div class="container bootstrap snippets bootdey">
-<div class="panel-body inf-content">
-    <div class="row">
-        <div class="col-md-4">
-            {% comment %} <img alt="" style="width:600px;" title="" class="img-circle img-thumbnail isTooltip" src="https://bootdey.com/img/Content/avatar/avatar7.png" data-original-title="Usuario">  {% endcomment %}
-            <ul title="Ratings" class="list-inline ratings text-center">
-                <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
-            </ul>
-        </div>
-        <div class="col-md-6">
-            <strong>Information</strong><br>
-            <div class="table-responsive">
-            <table class="table table-user-information">
-                <tbody>
-                    <tr>        
-                        <td>
-                            <strong>
-                                <span class="glyphicon glyphicon-asterisk text-primary"></span>
-                                Status                                                
-                            </strong>
-                        </td>
-                        <td class="text-primary">
-                            {% if permit %}  
-                              *You are now a service Provider
-                            {% elif status %}  
-                              *Account verification pending
-                            {% else %}  
-                              <a href={% url 'upload_data' %} class="btn btn-outline-info">Please verify</a> 
-                            {% endif %}
-                            
-                        </td>
-                    </tr>
-                    <tr>    
-                        <td>
-                            <strong>
-                                <span class="glyphicon glyphicon-user  text-primary"></span>    
-                                Name                                                
-                            </strong>
-                        </td>
-                        <td class="text-primary">
-                            {{ first_name }}     
-                        </td>
-                    </tr>
-                    <tr>        
-                        <td>
-                            <strong>
-                                <span class="glyphicon glyphicon-cloud text-primary"></span>  
-                                Lastname                                                
-                            </strong>
-                        </td>
-                        <td class="text-primary">
-                            {{last_name}}  
-                        </td>
-                    </tr>
+            <div class="panel-body inf-content">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img alt="" style="width:600px;" title="" class="img-circle img-thumbnail isTooltip" src="{{profile}}" data-original-title="Usuario"> 
+                    </div>
+                    <div class="col-md-6">
+                        <div class="table-responsive">
+                            <table class="table table-user-information">
+                                <tbody>
+                                    <tr>        
+                                        <td>
+                                            <strong>
+                                                <span class="glyphicon glyphicon-asterisk text-primary"></span>
+                                                Information                                                
+                                            </strong>
+                                        </td>
+                                        <td class="text-primary">
+                                                <a class="btn btn-primary" href='accounts/logout' role="button">Logout</a>                           
+                                        </td>
+                                    </tr>
+                                    <tr>        
+                                        <td>
+                                            <strong>
+                                                <span class="glyphicon glyphicon-asterisk text-primary"></span>
+                                                Status                                                
+                                            </strong>
+                                        </td>
+                                        <td class="text-primary">
+                                            {% if 'accepted' in status %}  
+                                            *You are now a service Provider
+                                            {% elif 'pending' in status %}  
+                                            *Account verification is pending
+                                            {% else %}  
+                                            *Account Blocked 
+                                            {% endif %}
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>    
+                                        <td>
+                                            <strong>
+                                                <span class="glyphicon glyphicon-user  text-primary"></span>    
+                                                Name                                                
+                                            </strong>
+                                        </td>
+                                        <td class="text-primary">
+                                            {{ first_name }}     
+                                        </td>
+                                    </tr>
+                                    <tr>        
+                                        <td>
+                                            <strong>
+                                                <span class="glyphicon glyphicon-cloud text-primary"></span>  
+                                                Lastname                                                
+                                            </strong>
+                                        </td>
+                                        <td class="text-primary">
+                                            {{last_name}}  
+                                        </td>
+                                    </tr>
 
-                    <tr>        
-                        <td>
-                            <strong>
-                                <span class="glyphicon glyphicon-bookmark text-primary"></span> 
-                                Username                                                
-                            </strong>
-                        </td>
-                        <td class="text-primary">
-                            {{username}} 
-                        </td>
-                    </tr>
-
-
-                    <tr>        
-                        <td>
-                            <strong>
-                                <span class="glyphicon glyphicon-eye-open text-primary"></span> 
-                                Role                                                
-                            </strong>
-                        </td>
-                        <td class="text-primary">
-                            {{role}}
-                        </td>
-                    </tr>
-                    <tr>        
-                        <td>
-                            <strong>
-                                <span class="glyphicon glyphicon-envelope text-primary"></span> 
-                                Email                                                
-                            </strong>
-                        </td>
-                        <td class="text-primary">
-                           {{email}} 
-                        </td>
-                    </tr>
-                    <tr>        
-                        <td>
-                            <strong>
-                                <span class="glyphicon glyphicon-calendar text-primary"></span>
-                                created                                                
-                            </strong>
-                        </td>
-                        <td class="text-primary">
-                            20 jul 20014
-                        </td>
-                    </tr>
-                    <tr>        
-                        <td>
-                            <strong>
-                                <span class="glyphicon glyphicon-calendar text-primary"></span>
-                                Modified                                                
-                            </strong>
-                        </td>
-                        <td class="text-primary">
-                             20 jul 20014 20:00:00
-                        </td>
-                    </tr>                                    
-                </tbody>
-            </table>
-            </div>
-        </div>
-    </div>
-</div>
-<a class="btn btn-primary" href={% url 'logout_service' %} role="button">Logout</a>
-</div>                                        
+                                    <tr>        
+                                        <td>
+                                            <strong>
+                                                <span class="glyphicon glyphicon-bookmark text-primary"></span> 
+                                                Username                                                
+                                            </strong>
+                                        </td>
+                                        <td class="text-primary">
+                                            {{username}} 
+                                        </td>
+                                    </tr>
+                                    <tr>        
+                                        <td>
+                                            <strong>
+                                                <span class="glyphicon glyphicon-envelope text-primary"></span> 
+                                                Email                                                
+                                            </strong>
+                                        </td>
+                                        <td class="text-primary">
+                                        {{email}} 
+                                        </td>
+                                    </tr>
+                                    {% if 'accepted' in status %}  
+                                    <tr>        
+                                        <td>
+                                            <strong>
+                                                <span class="glyphicon glyphicon-envelope text-primary"></span> 
+                                                Add Your Auditorium                                                
+                                            </strong>
+                                        </td>
+                                        <td class="text-primary">
+                                        <a class="btn btn-primary" href="{% url 'serviceprovider:add-auditorium' %}" role="button">ADD</a> 
+                                        </td>
+                                    </tr>
+                                    {%endif%}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row">
+                            {% for auditorium in auditoriums %}
+                            <div class="card" style="width: 18rem;">
+                                {% comment %} <img class="card-img-top" src="{{auditorium.catelog}}" alt="Card image cap"> {% endcomment %}
+                                <div class="card-body">
+                                    <h5 class="card-title">{{auditorium.name}}</h5>
+                                    {% comment %} <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> {% endcomment %}
+                                    <a href="serviceprovider/auditorium-dashboard/{{auditorium.user}}/{{auditorium.id}}" class="btn btn-primary">Dashboard</a>
+                                </div>
+                            </div>
+                            {%endfor%}
+                        </div>
+                    </div>
+                </div>
+            </div>      
+        </div>                                        
     </body>
 </html>

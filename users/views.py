@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 
 from .forms import *
 from .models import *
+from serviceprovider.models import Auditorium, Book
 
 # Create your views here.
 
@@ -35,6 +36,31 @@ def signup_serviceprovider(request):
             acc.save()
             return redirect('accounts/login')
     return render(request, 'signup_service.html', {'form': SignupForm()})
+
+@login_required
+def dashboard(request):
+    user = User.objects.get(email=request.user)
+    auditoriums = Auditorium.objects.filter(user=user)
+    try:
+        profile_status = ProfileStatus.objects.get(user=user)
+        if profile_status.status == "Accepted":
+            status = 'accepted'
+        else:
+            status = 'deline'
+    except:
+        status = 'pending'
+
+    context = {
+        'profile' : Profile.objects.get(user=user).pic,
+        'first_name' : user.first_name,
+        'last_name' : user.last_name,
+        'username' : user.username,
+        'email' : user.email,
+        'status' : status,
+        'auditoriums': auditoriums
+    }
+    
+    return render(request, 'dashboard_service.html', context=context)
 
 @login_required
 def profile(request):
@@ -69,7 +95,19 @@ def profile(request):
             pin=pin
         )
         profile.save()
+        return redirect('users:dashboard')
     return render(request, 'profile.html', {'form': ProfileForm()})
+
+@login_required
+def dashboard_client(request):
+    user = request.user
+    books = Book.objects.filter(user=user)
+    user = User.objects.get(email=user)
+    context = {
+        'books':books, 
+        'user':user
+        }
+    return render(request, 'dashboard_client.html', context=context)
 
 
 

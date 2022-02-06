@@ -46,3 +46,6 @@ class ProfileStatus(models.Model):
     )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     status = models.CharField(max_length=9, choices=choices)
+
+    def __str__(self):
+        return f'{self.user}'

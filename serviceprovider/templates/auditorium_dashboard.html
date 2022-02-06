@@ -1,0 +1,182 @@
+<html>
+    <head>
+       <!-- CSS only -->
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+      <!-- JavaScript Bundle with Popper -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+      <style>
+           .inf-content{
+            border:1px solid #DDDDDD;
+            -webkit-border-radius:10px;
+            -moz-border-radius:10px;
+            border-radius:10px;
+            box-shadow: 7px 7px 7px rgba(0, 0, 0, 0.3);
+                        }			                                                      
+      </style>
+    </head>
+    <body>
+        <div class="container bootstrap snippets bootdey">
+            <div class="panel-body inf-content">
+                <div class="row">
+                    {% comment %} 
+                    <div class="col-md-4">
+                        <img alt="" style="width:600px;" title="" class="img-circle img-thumbnail isTooltip" src="{{profile}}" data-original-title="Usuario"> 
+                    </div>
+                    <div class="col-md-6"> 
+                    {% endcomment %}
+                        <div class="table-responsive">
+                            <table class="table table-user-information">
+                                <tbody>
+                                    <tr>        
+                                        <td>
+                                            <strong>
+                                                <span class="glyphicon glyphicon-asterisk text-primary"></span>
+                                                Information                                                
+                                            </strong>
+                                        </td>
+                                        <td class="text-primary">
+                                                <a class="btn btn-primary" href="{% url 'users:dashboard' %}" role="button">Back</a>                           
+                                        </td>
+                                    </tr>
+                                    <tr>        
+                                        <td>
+                                            <strong>
+                                                <span class="glyphicon glyphicon-asterisk text-primary"></span>
+                                                Name                                                
+                                            </strong>
+                                        </td>
+                                        <td class="text-primary">
+                                            {{auditorium.name}}
+                                        </td>
+                                    </tr>
+                                    <tr>    
+                                        <td>
+                                            <strong>
+                                                <span class="glyphicon glyphicon-user  text-primary"></span>    
+                                                Price/hour                                                
+                                            </strong>
+                                        </td>
+                                        <td class="text-primary">
+                                            {{ auditorium.price }}     
+                                        </td>
+                                    </tr>
+                                    <tr>        
+                                        <td>
+                                            <strong>
+                                                <span class="glyphicon glyphicon-cloud text-primary"></span>  
+                                                Address                                                
+                                            </strong>
+                                        </td>
+                                        <td class="text-primary">
+                                            {{auditorium.district}}, {{auditorium.state}}, {{auditorium.post}}, {{auditorium.pin}}  
+                                        </td>
+                                    </tr>
+
+                                    <tr>        
+                                        <td>
+                                            <strong>
+                                                <span class="glyphicon glyphicon-bookmark text-primary"></span> 
+                                                Contact Number                                                
+                                            </strong>
+                                        </td>
+                                        <td class="text-primary">
+                                            {{auditorium.number}} 
+                                        </td>
+                                    </tr>
+                                    <tr>        
+                                        <td>
+                                            <strong>
+                                                <span class="glyphicon glyphicon-envelope text-primary"></span> 
+                                                Contact Email                                                
+                                            </strong>
+                                        </td>
+                                        <td class="text-primary">
+                                            {{auditorium.email}} 
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>      
+        </div>
+
+        <br>
+        {% comment %}==================== booking section ======================={% endcomment %}
+
+        <div class="container bootstrap snippets bootdey">
+            <div class="panel-body inf-content">
+                <div class="row">
+                        <div class="table-responsive">
+                            <table class="table table-user-information">
+                                <thead>
+                                    <h5>
+                                        Booking Table
+                                    </h5> 
+                                </thead>
+                                <tbody>
+                                    <tr>        
+                                        <td>
+                                            <strong>
+                                                <span class="glyphicon glyphicon-asterisk">Date</span>                                                  
+                                            </strong>
+                                        </td>
+                                        <td>
+                                            <strong>
+                                                <span class="glyphicon glyphicon-asterisk">Time Slote</span>                                                  
+                                            </strong>
+                                        </td>
+                                        <td>
+                                            <strong>
+                                                <span class="glyphicon glyphicon-asterisk">Name</span>                                                  
+                                            </strong>
+                                        </td>
+                                        <td>
+                                            <strong>
+                                                <span class="glyphicon glyphicon-asterisk">Number</span>                                                  
+                                            </strong>
+                                        </td>
+                                        <td>
+                                            <strong>
+                                                <span class="glyphicon glyphicon-asterisk">Email</span>                                                  
+                                            </strong>
+                                        </td>
+                                        <td>
+                                            <strong>
+                                                <span class="glyphicon glyphicon-asterisk">Massage</span>                                                  
+                                            </strong>
+                                        </td>
+                                    </tr>
+                                    {% for book in books %}
+                                    <tr>        
+                                        <td>
+                                            <span class="glyphicon glyphicon-asterisk text-primary">{{book.date}}</span>                                                    
+                                        </td>
+                                        <td>
+                                            <span class="glyphicon glyphicon-asterisk text-primary">{{book.from_time}} - {{book.to_time}}</span>                                                    
+                                        </td>
+                                        <td>
+                                            <span class="glyphicon glyphicon-asterisk text-primary">{{book.book_name}}</span>                                                    
+                                        </td>
+                                        <td>
+                                            <span class="glyphicon glyphicon-asterisk text-primary">{{book.book_number}}</span>                                                    
+                                        </td>
+                                        <td>
+                                            <span class="glyphicon glyphicon-asterisk text-primary">{{book.book_email}}</span>                                                    
+                                        </td>
+                                        <td>
+                                            <span class="glyphicon glyphicon-asterisk text-primary">{{book.message}}</span>                                                    
+                                        </td>
+                                    </tr>
+                                    {%endfor%}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>      
+        </div>                                    
+
+    </body>
+</html>
