@@ -37,7 +37,7 @@ def signup_serviceprovider(request):
             return redirect('accounts/login')
     return render(request, 'signup_service.html', {'form': SignupForm()})
 
-@login_required
+@login_required(login_url='users:signup-serviceprovider')
 def dashboard(request):
     user = User.objects.get(email=request.user)
     auditoriums = Auditorium.objects.filter(user=user)
@@ -62,7 +62,7 @@ def dashboard(request):
     
     return render(request, 'dashboard_service.html', context=context)
 
-@login_required
+@login_required(login_url='users:signup-serviceprovider')
 def profile(request):
     if request.method == 'POST':
         form = ProfileForm(request.POST)
@@ -98,7 +98,7 @@ def profile(request):
         return redirect('users:dashboard')
     return render(request, 'profile.html', {'form': ProfileForm()})
 
-@login_required
+@login_required(login_url='users:signup-client')
 def dashboard_client(request):
     user = request.user
     books = Book.objects.filter(user=user)

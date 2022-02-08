@@ -51,7 +51,7 @@ def after_login(request):
             return redirect('home:auditoriums')
         previews = Preview.objects.filter(auditorium=auditorium)
         context = {
-                    'client':user,
+                    'client':request.user,
                     'check' : False,
                     'auditorium' : auditorium,
                     'previews' : previews,
@@ -59,12 +59,12 @@ def after_login(request):
                 }
         return render(request, 'home.html', context=context)
         
-@login_required
+# @login_required
 def auditoriums(request):
     list = Auditorium.objects.all()
     return render(request, 'auditoriums.html', {'list': list})
 
-@login_required
+@login_required(login_url='users:signup-client')
 def auditorium_info(request):
     if request.method == "POST":
         id = request.POST['btn']
@@ -79,7 +79,7 @@ def auditorium_info(request):
     }
     return render(request, 'auditorium_info.html', context=context)
 
-@login_required
+@login_required(login_url='users:signup-client')
 def auditorium_book(request):
     if request.method == 'POST':
         id = request.POST['btn']
