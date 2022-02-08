@@ -8,18 +8,23 @@
   <p align="center">
 'booking Line' is the booking platform to book auditoriums in your city and also auditoriums can list here as 'service providers' 
     <br />
-    <a href="https://bookingline.netlify.app/"><strong>Explore the site »</strong></a>
+    <a href="https://bookingline2.herokuapp.com/"><strong>Explore the site »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/amjadcp/Auditorium-Booking-System-mini-project-groupA/issues">Report Bug</a>
+    <a href="https://github.com/amjadcp/bookingLine-grpA-miniProject/issues">Report Bug</a>
     ·
-    <a href="https://github.com/amjadcp/Auditorium-Booking-System-mini-project-groupA/issues">Request Feature</a>
+    <a href="https://github.com/amjadcp/bookingLine-grpA-miniProject/issues">Request Feature</a>
   </p>
 </p>
 
-<img src="1.png"> <br>
-<img src="2.png"> <br>
-<img src="2.png">
+<img src="README/1.png"> <br>
+<img src="README/2.png"> <br>
+<img src="README/3.png"> <br>
+<img src="README/4.png"> <br>
+<img src="README/5.png"> <br>
+<img src="README/6.png"> <br>
+<img src="README/7.png"> <br>
+<img src="README/8.png"> <br>
 
 
 
@@ -43,9 +48,11 @@
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
-    <li><a href="#contact">Project Link</a></li>
+    <li><a href="#project-link">Project Link</a></li>
+    <li><a href="#module-of-project">Module of Project</a></li>
+    <li><a href="#status-of-project">Status of Project</a></li>
+    <li><a href="#to-do-list">To-Do List</a></li>
     <li><a href="#contributers">Contributers</a></li>
-    <li><a href="#Phase of program">Phase of program</a></li>
   </ol>
 </details>
 
@@ -93,7 +100,29 @@ This is an example of how to list things you need to use the software and how to
    ```sh
    git clone https://github.com/amjadcp/Auditorium-Booking-System-mini-project-groupA
    ```
-2. open index.html
+2. Enter to the repo
+   ```sh
+   cd Auditorium-Booking-System-mini-project-groupA
+   ```
+3. Create a virtual environment
+   ```sh
+   python3 -m venv venv
+   ```
+4. Activate virtual environment
+   ```sh
+   source venv/bin/activate
+   ```
+5. Install whole dependencies
+   ```sh
+   pip install -r requirements.txt
+   ```
+6. Run server and open in [127.0.0.1:8080](http://127.0.0.1:8000/)
+   ```sh
+   python manage.py runserver
+   ```
+
+
+
 
 
 <!-- ROADMAP -->
@@ -126,23 +155,54 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- project link -->
 ## Project Link
 
-Project Link: [https://github.com/amjadcp/Auditorium-Booking-System-mini-project-groupA](https://github.com/amjadcp/Auditorium-Booking-System-mini-project-groupA)
+Project Link: [https://github.com/amjadcp/bookingLine-grpA-miniProject](https://github.com/amjadcp/bookingLine-grpA-miniProject)
 
-
-
-<!-- CONTRIBUTERS -->
-## Contributers
-* [Ahad Zain](https://github.com/ahadzain) - Backend
-* [Amjad CP](https://github.com/amjadcp)   - Backend
-* [Fathima Liyna Sherin](https://github.com/Liyanavk) - Frontend
-* [Jasna Fathima](https://github.com/) - Frontend
-* [Muhammed Shamir Wafa](https://github.com/shamirwafa) - Backend
-
-## Phase of program
+<!-- module of project -->
+## Module of project
 1. Frontend creation
 2. Implement with backend
 3. Connect to Database
 4. Deploy the web-app
+
+<!-- status of project -->
+## Status of Project
+90% Completed
+
+<!-- to-do list -->
+## To-Do List
+1. Signup and Login of Client, Service Provider                                 (✓)
+2. Profile creation form for Service Provider                                   (✓)
+3. Checking of genuinity of Service Provider from admin side                    (✓)
+4. Grand or revoke the permission of Service Provider                           (✓)
+5. Service Provider can add his/her auditorium when his/her have the permission (✓)
+6. Dash board for Sevice Provider with personal info and auditorium list        (✓)
+7. Dash board for each auditorium with booking data (only the owner can see)    (✓)
+8. Web page with all auditorium list                                            (✓)
+9. Web page with auditorium info and booking form                               (✓)
+10. Dash board for Client with personal info and booking history                (✓)
+11. Checking of availability of auditorium                                      (×)
+12. Customized admin panel                                                      (×)
+13. Completion of CRUD operation                                                (×)
+14. Ensure the security                                                         (×)
+15. Add content                                                                 (×)
+16. Change DBMS from db.sqlite3 to postgresql                                   (×)
+17. Host in Heroku                                                              (✓)
+
+    #### Totel Sub-tasks           : 17
+    #### Completed                 : 12
+    #### Pending                   : 05
+    #### Time required to complete : 48hr (2 Days)
+
+
+<!-- CONTRIBUTERS -->
+## Contributers
+* [Ahad Zain](https://github.com/ahadzain) - Project architecture
+* [Amjad CP](https://github.com/amjadcp)   - Backend & Version Controll
+* [Fathima Liyna Sherin](https://github.com/Liyanavk) - Frontend
+* [Jasna Fathima](https://github.com/) - Content Creation
+* [Muhammed Shamir Wafa](https://github.com/shamirwafa) - Frontend
+
+
 
 
 
