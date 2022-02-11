@@ -260,6 +260,7 @@
               placeholder="Your Name"
               data-rule="minlen:4"
               data-msg="Please enter at least 4 chars"
+              required
             />
             <div class="validate"></div>
           </div>
@@ -284,31 +285,20 @@
               placeholder="Your Phone"
               data-rule="minlen:4"
               data-msg="Please enter at least 4 chars"
+              required
             />
             <div class="validate"></div>
           </div>
 
           <div class="col-lg-4 col-md-6 form-group mt-3">
-            {% comment %}
-            <input
-              type="number"
-              class="form-control"
-              name="year"
-              id="year"
-              placeholder="Year"
-              data-rule="minlen:4"
-              min="2022"
-              max="2050"
-            />
-            {% endcomment %}
             <select
               class="form-select"
               aria-label="Default select example"
               name="year"
-              ,
               id="year"
+              required
             >
-              <option selected>Year</option>
+              <option disabled selected>Year</option>
               {%for year in years%}
               <option value="{{year}}">{{year}}</option>
               {%endfor%}
@@ -317,124 +307,72 @@
           </div>
 
           <div class="col-lg-4 col-md-6 form-group mt-3">
-            {% comment %}
-            <input
-              type="number"
-              class="form-control"
-              name="month"
-              id="month"
-              placeholder="Month"
-              data-rule="minlen:4"
-              min="01"
-              max="12"
-            />
-            {% endcomment %}
             <select
               class="form-select"
               aria-label="Default select example"
               name="month"
               id="month"
+              required
             >
-              <option selected>Month</option>
-              {%for month in months%}
-              {%if month < 10%}
-                <option value="0{{month}}">0{{month}}</option>
+              <option disabled selected>Month</option>
+              {%for month in months%} {%if month < 10%}
+              <option value="0{{month}}">0{{month}}</option>
               {%else%}
               <option value="{{month}}">{{month}}</option>
-              {%endif%}
-              {%endfor%}
+              {%endif%} {%endfor%}
             </select>
             <div class="validate"></div>
           </div>
 
           <div class="col-lg-4 col-md-6 form-group mt-3">
-            {% comment %}
-            <input
-              type="number"
-              class="form-control"
-              name="day"
-              id="day"
-              placeholder="Day"
-              data-rule="minlen:4"
-              min="01"
-              max="31"
-            />
-            {% endcomment %}
             <select
               class="form-select"
               aria-label="Default select example"
               name="day"
               id="day"
+              required
             >
-              <option selected>Day</option>
-              {%for day in days%}
-              {%if day < 10%}
-                <option value="0{{day}}">0{{day}}</option>
+              <option disabled selected>Day</option>
+              {%for day in days%} {%if day < 10%}
+              <option value="0{{day}}">0{{day}}</option>
               {%else%}
-                <option value="{{day}}">{{day}}</option>
-              {%endif%}
-              {%endfor%}
+              <option value="{{day}}">{{day}}</option>
+              {%endif%} {%endfor%}
             </select>
             <div class="validate"></div>
           </div>
 
           <div class="col-lg-2 col-md-6 form-group mt-3">
-            {% comment %}
-            <input
-              type="number"
-              class="form-control"
-              name="from_time"
-              id="from_time"
-              placeholder="From Time (24h)"
-              data-rule="minlen:4"
-              min="7"
-              max="22"
-            />
-            {% endcomment %}
             <select
               class="form-select"
               aria-label="Default select example"
               name="from_time"
               id="from_time"
+              required
             >
-              <option selected>From</option>
-              {%for from in froms%}
-              {%if from < 10%}
+              <option disabled selected>From</option>
+              {%for from in froms%} {%if from < 10%}
               <option value="0{{from}}">0{{from}}:00</option>
               {%else%}
               <option value="{{from}}">{{from}}:00</option>
-              {%endif%}
-              {%endfor%}
+              {%endif%} {%endfor%}
             </select>
             <div class="validate"></div>
           </div>
           <div class="col-lg-2 col-md-6 form-group mt-3">
-            {% comment %}
-            <input
-              type="number"
-              class="form-control"
-              name="to_time"
-              id="to_time"
-              placeholder="To Time (24h)"
-              data-rule="minlen:1"
-              min="8"
-              max="23"
-            />
-            {% endcomment %}
             <select
               class="form-select"
               aria-label="Default select example"
               name="to_time"
               id="to_time"
+              required
             >
-              <option selected>To</option>
-              {%for to in tos%}
-              {%if to < 10%}
+              <option disabled selected>To</option>
+              {%for to in tos%} {%if to < 10%}
               <option value="0{{to}}">0{{to}}:00</option>
               {%else%}
               <option value="{{to}}">{{to}}:00</option>
-              {%endif%}
-              {%endfor%}
+              {%endif%} {%endfor%}
             </select>
             <div class="validate"></div>
           </div>
@@ -445,7 +383,7 @@
             name="message"
             id="message"
             rows="5"
-            placeholder="Message"
+            placeholder="Message (optional)"
           ></textarea>
           <div class="validate"></div>
         </div>
@@ -456,8 +394,8 @@
             Time Slot Not Avalible
           </div>
           <div class="sent-message" id="sent-message">
-            Your booking request was successful. We will call back or send an Email to
-            confirm your reservation. Thank you!
+            Your booking request was successful. We will call back or send an
+            Email to confirm your reservation. Thank you!
           </div>
         </div>
         <div class="text-center">

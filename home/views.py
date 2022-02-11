@@ -104,7 +104,7 @@ def auditorium_book(request):
         books = Book.objects.filter(auditorium=auditorium)
         for book in books:
             if str(book.date) == date:
-                if str(book.from_time)==from_time and str(book.to_time)>from_time:
+                if str(book.from_time)==from_time or str(book.to_time)>from_time:
                     print("Time slot not available")
                     return JsonResponse({'message' : '0'})
                 
