@@ -1,4 +1,4 @@
-from unicodedata import name
+from django.http import JsonResponse
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
@@ -76,13 +76,18 @@ def auditorium_info(request):
         'client' : request.user,
         'previews' : previews,
         'preview0' : previews[0],
+        'years' : list(range(2022,2051)),
+        'months' : list(range(1,13)),
+        'days' : list(range(1,32)),
+        'froms' : list(range(7, 23)),
+        'tos' : list(range(8, 24)),
     }
     return render(request, 'auditorium_info.html', context=context)
 
 @login_required(login_url='users:signup-client')
 def auditorium_book(request):
     if request.method == 'POST':
-        id = request.POST['btn']
+        id = request.POST['id']
         auditorium = Auditorium.objects.get(id=id)
         book_name = request.POST['book_name']
         book_number = request.POST['book_number']
@@ -96,6 +101,13 @@ def auditorium_book(request):
         to_time = request.POST['to_time']
         to_time = str(to_time)+':00:00'
         message = request.POST['message']
+        books = Book.objects.filter(auditorium=auditorium)
+        for book in books:
+            if str(book.date) == date:
+                if str(book.from_time)==from_time and str(book.to_time)>from_time:
+                    print("Time slot not available")
+                    return JsonResponse({'message' : '0'})
+                
         Book.objects.create(
             auditorium=auditorium,
             user = request.user,
@@ -107,4 +119,5 @@ def auditorium_book(request):
             to_time=to_time,
             message=message
         )
-    return redirect('users:dashboard-client')
+    return JsonResponse({'message' : '1'})
+

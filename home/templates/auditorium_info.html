@@ -1,326 +1,611 @@
-{% extends "base.html" %}
-{% load static %}
+{% extends "base.html" %} {% load static %} {% block page %} {% csrf_token %}
 
-{% block page %}
+<!-- ======= Header ======= -->
+<header
+  id="header"
+  class="fixed-top d-flex align-items-center header-transparent"
+>
+  <div
+    class="container-fluid container-xl d-flex align-items-center justify-content-between"
+  >
+    <div class="logo me-auto">
+      <h1><a href="#">{{auditorium.name}}</a></h1>
+      {% comment %} {% if check %}
+      <div></div>
+      {%else%} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <h5 style="color: aliceblue;">
+        Hey, {{ client }} welcome to bookingLine
+      </h5>
+      {% endif %} {% endcomment %}
+    </div>
 
-{% csrf_token %}
+    <nav id="navbar" class="navbar order-last order-lg-0">
+      <ul>
+        <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+        <li><a class="nav-link scrollto" href="#about">About</a></li>
+        <li><a class="nav-link scrollto" href="#gallery">Gallery</a></li>
+        <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+        <li>
+          <a class="nav-link scrollto" href="{% url 'home:auditoriums' %}">
+            Back
+          </a>
+        </li>
+      </ul>
+      <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav>
+    <!-- .navbar -->
+    <a href="#book-a-table" class="book-a-table-btn scrollto">
+      Book Auditorium
+    </a>
+  </div>
+</header>
+<!-- End Header -->
 
-  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top d-flex align-items-center header-transparent">
-    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+<!-- ======= Hero Section ======= -->
+<section id="hero">
+  <div class="hero-container">
+    <div
+      id="heroCarousel"
+      data-bs-interval="5000"
+      class="carousel slide carousel-fade"
+      data-bs-ride="carousel"
+    >
+      <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
 
-      <div class="logo me-auto">
-        <h1><a href="#">{{auditorium.name}}</a></h1>
-        {% comment %} {% if check %}
-        <div></div>
+      <div class="carousel-inner" role="listbox">
+        <!-- Slide 1 -->
+        {%for preview in previews%} {%if preview.images == preview0.images%}
+        <div
+          class="carousel-item active"
+          style="background: url('{{preview.images}}'); width: 100%; background-size: cover;"
+        >
+          <div class="carousel-container">
+            <div class="carousel-content">
+              <h2 class="animate__animated animate__fadeInDown">
+                #Auditorium 1
+              </h2>
+              <p class="animate__animated animate__fadeInUp">#discription</p>
+              <div>
+                {% comment %}
+                <a
+                  href="#menu"
+                  class="btn-menu animate__animated animate__fadeInUp scrollto"
+                >
+                  More
+                </a>
+                {% endcomment %}
+                <a
+                  href="#about"
+                  class="btn-book animate__animated animate__fadeInUp scrollto"
+                >
+                  Scroll Down For More Info
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
         {%else%}
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h5 style="color: aliceblue;">Hey, {{ client }} welcome to bookingLine</h5>
-        {% endif %} {% endcomment %}
-      </div>
-
-      <nav id="navbar" class="navbar order-last order-lg-0">
-        <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">About</a></li>
-          <li><a class="nav-link scrollto" href="#gallery">Gallery</a></li>
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-          <li><a class="nav-link scrollto" href="{% url 'home:auditoriums' %}">Back</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-      <a href="#book-a-table" class="book-a-table-btn scrollto">Book Auditorium</a>
-    </div>
-  </header><!-- End Header -->
-
-  <!-- ======= Hero Section ======= -->
-  <section id="hero">
-    <div class="hero-container">
-      <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
-
-        <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
-
-        <div class="carousel-inner" role="listbox">
-
-          <!-- Slide 1 -->
-          {%for preview in previews%}
-          {%if preview.images == preview0.images%}
-          <div class="carousel-item active" style="background: url('{{preview.images}}'); width: 100%; background-size: cover;">
-              <div class="carousel-container">
-                    <div class="carousel-content">
-                        <h2 class="animate__animated animate__fadeInDown">#Auditorium 1</h2>
-                        <p class="animate__animated animate__fadeInUp"> #discription </p>
-                        <div>
-                          {% comment %} <a href="#menu" class="btn-menu animate__animated animate__fadeInUp scrollto"> More </a> {% endcomment %}
-                          <a href="#about" class="btn-book animate__animated animate__fadeInUp scrollto">Scroll Down For More Info</a>
-                        </div>
-                    </div>
+        <div
+          class="carousel-item"
+          style="background: url('{{preview.images}}'); width: 100%; background-size: cover;"
+        >
+          <div class="carousel-container">
+            <div class="carousel-content">
+              <h2 class="animate__animated animate__fadeInDown">
+                #Auditorium 1
+              </h2>
+              <p class="animate__animated animate__fadeInUp">#discription</p>
+              <div>
+                {% comment %}
+                <a
+                  href="#menu"
+                  class="btn-menu animate__animated animate__fadeInUp scrollto"
+                >
+                  More
+                </a>
+                {% endcomment %}
+                <a
+                  href="#about"
+                  class="btn-book animate__animated animate__fadeInUp scrollto"
+                >
+                  Scroll Down For More Info
+                </a>
               </div>
+            </div>
           </div>
-          {%else%}
-              <div class="carousel-item" style="background: url('{{preview.images}}'); width: 100%; background-size: cover;">
-                  <div class="carousel-container">
-                        <div class="carousel-content">
-                            <h2 class="animate__animated animate__fadeInDown">#Auditorium 1</h2>
-                            <p class="animate__animated animate__fadeInUp"> #discription </p>
-                            <div>
-                              {% comment %} <a href="#menu" class="btn-menu animate__animated animate__fadeInUp scrollto"> More </a> {% endcomment %}
-                              <a href="#about" class="btn-book animate__animated animate__fadeInUp scrollto">Scroll Down For More Info</a>
-                            </div>
-                        </div>
-                    </div>
-              </div>
-          {%endif%}
-            
-          {%endfor%}
-
         </div>
+        {%endif%} {%endfor%}
+      </div>
 
-        <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
-        </a>
+      <a
+        class="carousel-control-prev"
+        href="#heroCarousel"
+        role="button"
+        data-bs-slide="prev"
+      >
+        <span
+          class="carousel-control-prev-icon bi bi-chevron-left"
+          aria-hidden="true"
+        ></span>
+      </a>
 
-        <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
-          <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
-        </a>
+      <a
+        class="carousel-control-next"
+        href="#heroCarousel"
+        role="button"
+        data-bs-slide="next"
+      >
+        <span
+          class="carousel-control-next-icon bi bi-chevron-right"
+          aria-hidden="true"
+        ></span>
+      </a>
+    </div>
+  </div>
+</section>
+<!-- End Hero -->
 
+<main id="main">
+  <!-- ======= About Section ======= -->
+  <section id="about" class="about">
+    <!-- <div class="container"> -->
+    <div class="row">
+      <div
+        class="col-lg-5 align-items-stretch video-box"
+        style='background-image: url("../../{{auditorium.catelog}};");'
+      >
+        <img
+          src="../../{{auditorium.catelog}}"
+          class="img-thumbnail"
+          style="width: 800px; height: 500px;"
+        />
+      </div>
+      <div
+        class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch"
+      >
+        <div class="content">
+          <h3 class="section-title">About</h3>
+          <p>
+            {{auditorium.about}}
+            <br />
+            Price/hour : {{auditorium.price}}
+          </p>
+          <ul>
+            <li>
+              <i class="bx bx-check-double"></i>
+              Have a management team for assure quality
+            </li>
+            <li>
+              <i class="bx bx-check-double"></i>
+              Updation with trend
+            </li>
+            <li>
+              <i class="bx bx-check-double"></i>
+              Popular service providers
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
-  </section><!-- End Hero -->
+    <!-- </div> -->
+  </section>
+  <!-- End About Section -->
 
-  <main id="main">
-
-    <!-- ======= About Section ======= -->
-    <section id="about" class="about">
-      <!-- <div class="container"> -->
-        <div class="row">
-
-            <div class="col-lg-5 align-items-stretch video-box" style='background-image: url("../../{{auditorium.catelog}};");'>
-                <img src="../../{{auditorium.catelog}}" class="img-thumbnail" style="width: 800px; height:500px">
-            </div>
-            <div class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch">
-                <div class="content">
-                    <h3 class='section-title'>About</h3>
-                    <p>
-                    {{auditorium.about}} <br>
-                    Price/hour : {{auditorium.price}}
-                    </p>
-                    <ul>
-                    <li><i class="bx bx-check-double"></i> Have a management team for assure quality</li>
-                    <li><i class="bx bx-check-double"></i> Updation with trend</li>
-                    <li><i class="bx bx-check-double"></i> Popular service providers</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-      <!-- </div> -->
-    </section>
-    <!-- End About Section -->
-
-    <!-- ======= Whu Us Section ======= -->
-    <section id="why" class="why-us">
-      <div class="container">
-
-        <div class="section-title">
-          <h2> <span>Why choose Our Service.</span></h2>
-          <p>We provide this amazing platform with wide selection of varities of auditoriums to conduct your events.</p>
-        </div>
-
-        <div class="row">
-
-          <div class="col-lg-4">
-            <div class="box">
-              <span>01</span>
-              <h4>Verified service providers</h4>
-              <p>Whole service providers verified by our team and actively screening</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 mt-4 mt-lg-0">
-            <div class="box">
-              <span>02</span>
-              <h4>For all budget category</h4>
-              <p>You can satisfy with your pocket</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 mt-4 mt-lg-0">
-            <div class="box">
-              <span>03</span>
-              <h4>Security</h4>
-              <p>We have strict security policy</p>
-            </div>
-          </div>
-
-        </div>
-
+  <!-- ======= Whu Us Section ======= -->
+  <section id="why" class="why-us">
+    <div class="container">
+      <div class="section-title">
+        <h2><span>Why choose Our Service.</span></h2>
+        <p>
+          We provide this amazing platform with wide selection of varities of
+          auditoriums to conduct your events.
+        </p>
       </div>
-    </section><!-- End Whu Us Section -->
 
-
-
-
-    <!-- ======= Book A Table Section ======= -->
-    <section id="book-a-table" class="book-a-table">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Book Auditorium</h2>
-          <p></p>
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="box">
+            <span>01</span>
+            <h4>Verified service providers</h4>
+            <p>
+              Whole service providers verified by our team and actively
+              screening
+            </p>
+          </div>
         </div>
 
-        <form action="auditorium-book" method="post" role="form" class="php-email-form">
-          {% csrf_token %}
-          <div class="row">
-            <div class="col-lg-4 col-md-6 form-group">
-              <input type="text" name="book_name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-              <div class="validate"></div>
-            </div>
-            <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
-              <input type="email" class="form-control" name="book_email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email">
-              <div class="validate"></div>
-            </div>
-            <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
-              <input type="text" class="form-control" name="book_number" id="phone" placeholder="Your Phone" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-              <div class="validate"></div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 form-group mt-3">
-              <input type="number" class="form-control" name="year" id="year" placeholder="Year" data-rule="minlen:4" min="2022" max="2050">
-              <div class="validate"></div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 form-group mt-3">
-              <input type="number" class="form-control" name="month" id="month" placeholder="Month" data-rule="minlen:4" min="01" max="12">
-              <div class="validate"></div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 form-group mt-3">
-              <input type="number" class="form-control" name="day" id="day" placeholder="Day" data-rule="minlen:4" min="01" max="31">
-              <div class="validate"></div>
-            </div>
-
-            <div class="col-lg-2 col-md-6 form-group mt-3">
-              <input type="number" class="form-control" name="from_time" id="from_time" placeholder="From Time (24h)" data-rule="minlen:4" min="7" max="22">
-              <div class="validate"></div>
-            </div>
-            <div class="col-lg-2 col-md-6 form-group mt-3">
-              <input type="number" class="form-control" name="to_time" id="to_time" placeholder="To Time (24h)" data-rule="minlen:1" min="8" max="23">
-              <div class="validate"></div>
-            </div>
+        <div class="col-lg-4 mt-4 mt-lg-0">
+          <div class="box">
+            <span>02</span>
+            <h4>For all budget category</h4>
+            <p>You can satisfy with your pocket</p>
           </div>
-          <div class="form-group mt-3">
-            <textarea class="form-control" name="message" rows="5" placeholder="Message"></textarea>
+        </div>
+
+        <div class="col-lg-4 mt-4 mt-lg-0">
+          <div class="box">
+            <span>03</span>
+            <h4>Security</h4>
+            <p>We have strict security policy</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Whu Us Section -->
+
+  <!-- ======= Book A Table Section ======= -->
+  <section id="book-a-table" class="book-a-table">
+    <div class="container">
+      <div class="section-title">
+        <h2>Book Auditorium</h2>
+        <p></p>
+      </div>
+
+      <form
+        action="auditorium-book"
+        method="post"
+        role="form"
+        class="php-email-form"
+      >
+        {% csrf_token %}
+        <input type="hidden" value="{{csrf_token}}" id="csrf" />
+        <div class="row">
+          <div class="col-lg-4 col-md-6 form-group">
+            <input
+              type="text"
+              name="book_name"
+              class="form-control"
+              id="book_name"
+              placeholder="Your Name"
+              data-rule="minlen:4"
+              data-msg="Please enter at least 4 chars"
+            />
+            <div class="validate"></div>
+          </div>
+          <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
+            <input
+              type="email"
+              class="form-control"
+              name="book_email"
+              id="book_email"
+              placeholder="Your Email"
+              data-rule="email"
+              data-msg="Please enter a valid email"
+            />
+            <div class="validate"></div>
+          </div>
+          <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
+            <input
+              type="text"
+              class="form-control"
+              name="book_number"
+              id="book_number"
+              placeholder="Your Phone"
+              data-rule="minlen:4"
+              data-msg="Please enter at least 4 chars"
+            />
             <div class="validate"></div>
           </div>
 
-          <div class="mb-3">
-            <div class="loading">Loading</div>
-            <div class="error-message"></div>
-            <div class="sent-message">Your booking request was sent. We will call back or send an Email to confirm your reservation. Thank you!</div>
+          <div class="col-lg-4 col-md-6 form-group mt-3">
+            {% comment %}
+            <input
+              type="number"
+              class="form-control"
+              name="year"
+              id="year"
+              placeholder="Year"
+              data-rule="minlen:4"
+              min="2022"
+              max="2050"
+            />
+            {% endcomment %}
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              name="year"
+              ,
+              id="year"
+            >
+              <option selected>Year</option>
+              {%for year in years%}
+              <option value="{{year}}">{{year}}</option>
+              {%endfor%}
+            </select>
+            <div class="validate"></div>
           </div>
-          <div class="text-center"><button type="submit" id='{{auditorium.id}}' value='{{auditorium.id}}' name="btn">Book Auditorium</button></div>
-        </form>
-      </div>
-    </section><!-- End Book A Table Section -->
 
-    <!-- ======= Gallery Section ======= -->
-    <section id="gallery" class="gallery">
-      <div class="container-fluid">
-
-        <div class="section-title">
-          <h2>Some photos from <span> Our Gallery </span></h2>
-          <p>  </p>
-        </div>
-
-        <div class="row no-gutters">
-
-          {% for preview in previews %}
-          <div class="col-lg-3 col-md-4">
-            <div class="gallery-item">
-              <a href="../../{{preview.images}}" class="gallery-lightbox">
-                <img src="../../{{preview.images}}" alt="" class="img-fluid">
-              </a>
-            </div>
+          <div class="col-lg-4 col-md-6 form-group mt-3">
+            {% comment %}
+            <input
+              type="number"
+              class="form-control"
+              name="month"
+              id="month"
+              placeholder="Month"
+              data-rule="minlen:4"
+              min="01"
+              max="12"
+            />
+            {% endcomment %}
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              name="month"
+              id="month"
+            >
+              <option selected>Month</option>
+              {%for month in months%}
+              {%if month < 10%}
+                <option value="0{{month}}">0{{month}}</option>
+              {%else%}
+              <option value="{{month}}">{{month}}</option>
+              {%endif%}
+              {%endfor%}
+            </select>
+            <div class="validate"></div>
           </div>
-          {% endfor %}
 
-        </div>
+          <div class="col-lg-4 col-md-6 form-group mt-3">
+            {% comment %}
+            <input
+              type="number"
+              class="form-control"
+              name="day"
+              id="day"
+              placeholder="Day"
+              data-rule="minlen:4"
+              min="01"
+              max="31"
+            />
+            {% endcomment %}
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              name="day"
+              id="day"
+            >
+              <option selected>Day</option>
+              {%for day in days%}
+              {%if day < 10%}
+                <option value="0{{day}}">0{{day}}</option>
+              {%else%}
+                <option value="{{day}}">{{day}}</option>
+              {%endif%}
+              {%endfor%}
+            </select>
+            <div class="validate"></div>
+          </div>
 
-      </div>
-    </section><!-- End Gallery Section -->
-
-
-
-    <!-- ======= Testimonials Section ======= -->
-    
-    <!-- End Testimonials Section -->
-
-    <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact">
-      <div class="container">
-
-        <div class="section-title">
-          <h2><span>Contact</span> Us</h2>
-          <p> Contact us for more inforemations and query</p>
-        </div>
-      </div>
-
-      <div class="container mt-5">
-
-        <div class="info-wrap">
-          <div class="row">
-            <div class="col-lg-3 col-md-6 info">
-              <i class="bi bi-geo-alt"></i> 
-              <h4>Location:</h4>
-              <p>{{auditorium.street}}<br>{{auditorium.district}}, {{auditorium.state}} <br> {{auditorium.post}} - {{auditorium.pin }}</p>
-            </div>
-
-            <div class="col-lg-3 col-md-6 info mt-4 mt-lg-0">
-              <i class="bi bi-clock"></i>
-              <h4>Open Hours:</h4>
-              <p>Monday-Saturday:<br>11:00 AM - 11:00 PM</p>
-            </div>
-
-            <div class="col-lg-3 col-md-6 info mt-4 mt-lg-0">
-              <i class="bi bi-envelope"> <a href="mailto:{{auditorium.email}}"></a> </i>
-              <h4>Email:</h4>
-              <p> <a href="mailto:{{auditorium.email}}">{{auditorium.email}}</a> </p>
-            </div>
-
-            <div class="col-lg-3 col-md-6 info mt-4 mt-lg-0">
-              <i class="bi bi-phone"> <a href="tel:{{auditorium.number}}"></a> </i>
-              <h4>Call:</h4>
-              <p> <a href="tel:{{auditorium.number}}">{{auditorium.number}}</a></p>
-            </div>
+          <div class="col-lg-2 col-md-6 form-group mt-3">
+            {% comment %}
+            <input
+              type="number"
+              class="form-control"
+              name="from_time"
+              id="from_time"
+              placeholder="From Time (24h)"
+              data-rule="minlen:4"
+              min="7"
+              max="22"
+            />
+            {% endcomment %}
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              name="from_time"
+              id="from_time"
+            >
+              <option selected>From</option>
+              {%for from in froms%}
+              {%if from < 10%}
+              <option value="0{{from}}">0{{from}}:00</option>
+              {%else%}
+              <option value="{{from}}">{{from}}:00</option>
+              {%endif%}
+              {%endfor%}
+            </select>
+            <div class="validate"></div>
+          </div>
+          <div class="col-lg-2 col-md-6 form-group mt-3">
+            {% comment %}
+            <input
+              type="number"
+              class="form-control"
+              name="to_time"
+              id="to_time"
+              placeholder="To Time (24h)"
+              data-rule="minlen:1"
+              min="8"
+              max="23"
+            />
+            {% endcomment %}
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              name="to_time"
+              id="to_time"
+            >
+              <option selected>To</option>
+              {%for to in tos%}
+              {%if to < 10%}
+              <option value="0{{to}}">0{{to}}:00</option>
+              {%else%}
+              <option value="{{to}}">{{to}}:00</option>
+              {%endif%}
+              {%endfor%}
+            </select>
+            <div class="validate"></div>
           </div>
         </div>
+        <div class="form-group mt-3">
+          <textarea
+            class="form-control"
+            name="message"
+            id="message"
+            rows="5"
+            placeholder="Message"
+          ></textarea>
+          <div class="validate"></div>
+        </div>
 
-      </div>
-    </section><!-- End Contact Section -->
+        <div class="mb-3">
+          <div class="loading" id="loading">Loading</div>
+          <div class="error-message" id="error-message">
+            Time Slot Not Avalible
+          </div>
+          <div class="sent-message" id="sent-message">
+            Your booking request was successful. We will call back or send an Email to
+            confirm your reservation. Thank you!
+          </div>
+        </div>
+        <div class="text-center">
+          <button
+            type="button"
+            class="book-a-table-btn"
+            id="btn"
+            value="{{auditorium.id}}"
+            name="btn"
+          >
+            Book Auditorium
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+  <!-- End Book A Table Section -->
 
-  </main><!-- End #main -->
+  <!-- ======= Gallery Section ======= -->
+  <section id="gallery" class="gallery">
+    <div class="container-fluid">
+      <div class="section-title">
+        <h2>
+          Some photos from
+          <span>Our Gallery</span>
+        </h2>
+        <p></p>
+      </div>
 
-  <!-- ======= Footer ======= -->
-  <footer id="footer">
-    <div class="container">
-      <h3>booking Line</h3>
-      <p> #some quote </p>
-      <div class="social-links">
-        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-      </div>
-      <div class="copyright">
-        &copy; Copyright <strong><span>booking Line</span></strong>. All Rights Reserved
-      </div>
-      <div class="credits">
-        Designed and deployed by <a href="https://github.com/amjadcp/Auditorium-Booking-System-mini-project-groupA">Group A</a>
+      <div class="row no-gutters">
+        {% for preview in previews %}
+        <div class="col-lg-3 col-md-4">
+          <div class="gallery-item">
+            <a href="../../{{preview.images}}" class="gallery-lightbox">
+              <img src="../../{{preview.images}}" alt="" class="img-fluid" />
+            </a>
+          </div>
+        </div>
+        {% endfor %}
       </div>
     </div>
-  </footer><!-- End Footer -->
+  </section>
+  <!-- End Gallery Section -->
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-  
+  <!-- ======= Testimonials Section ======= -->
+
+  <!-- End Testimonials Section -->
+
+  <!-- ======= Contact Section ======= -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="section-title">
+        <h2>
+          <span>Contact</span>
+          Us
+        </h2>
+        <p>Contact us for more inforemations and query</p>
+      </div>
+    </div>
+
+    <div class="container mt-5">
+      <div class="info-wrap">
+        <div class="row">
+          <div class="col-lg-3 col-md-6 info">
+            <i class="bi bi-geo-alt"></i>
+            <h4>Location:</h4>
+            <p>
+              {{auditorium.street}}
+              <br />
+              {{auditorium.district}}, {{auditorium.state}}
+              <br />
+              {{auditorium.post}} - {{auditorium.pin }}
+            </p>
+          </div>
+
+          <div class="col-lg-3 col-md-6 info mt-4 mt-lg-0">
+            <i class="bi bi-clock"></i>
+            <h4>Open Hours:</h4>
+            <p>
+              Monday-Saturday:
+              <br />
+              11:00 AM - 11:00 PM
+            </p>
+          </div>
+
+          <div class="col-lg-3 col-md-6 info mt-4 mt-lg-0">
+            <i class="bi bi-envelope">
+              <a href="mailto:{{auditorium.email}}"></a>
+            </i>
+            <h4>Email:</h4>
+            <p>
+              <a href="mailto:{{auditorium.email}}">{{auditorium.email}}</a>
+            </p>
+          </div>
+
+          <div class="col-lg-3 col-md-6 info mt-4 mt-lg-0">
+            <i class="bi bi-phone"><a href="tel:{{auditorium.number}}"></a></i>
+            <h4>Call:</h4>
+            <p><a href="tel:{{auditorium.number}}">{{auditorium.number}}</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Contact Section -->
+</main>
+<!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<footer id="footer">
+  <div class="container">
+    <h3>booking Line</h3>
+    <p>#some quote</p>
+    <div class="social-links">
+      <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+      <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+      <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+      <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+      <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+    </div>
+    <div class="copyright">
+      &copy; Copyright
+      <strong><span>booking Line</span></strong>
+      . All Rights Reserved
+    </div>
+    <div class="credits">
+      Designed and deployed by
+      <a
+        href="https://github.com/amjadcp/Auditorium-Booking-System-mini-project-groupA"
+      >
+        Group A
+      </a>
+    </div>
+  </div>
+</footer>
+<!-- End Footer -->
+
+<a
+  href="#"
+  class="back-to-top d-flex align-items-center justify-content-center"
+>
+  <i class="bi bi-arrow-up-short"></i>
+</a>
+<script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"
+></script>
+<script src="{% static 'assets/js/book.js' %}"></script>
+
 {% endblock page %}

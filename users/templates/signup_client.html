@@ -76,7 +76,21 @@
 			<label class="form-check-label"><input type="checkbox" required="required"> I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a></label>
 		</div>
 
-		{{form.errors}}
+		{% if form.errors %}
+			{% for field in form %}
+				{% for error in field.errors %}
+					<div class="alert alert-danger">
+						<strong>{{ error|escape }}</strong>
+					</div>
+				{% endfor %}
+			{% endfor %}
+			{% for error in form.non_field_errors %}
+			<div class="alert alert-danger">
+				<strong>{{ error|escape }}</strong>
+			</div>
+			{% endfor %}
+		{% endif %}
+
 
 {% endblock form %}
 

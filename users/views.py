@@ -11,6 +11,7 @@ from serviceprovider.models import Auditorium, Book
 
 #client
 def signup_client(request):
+    form = SignupForm()
     if request.method == 'POST':
         form = SignupForm(request.POST)
         if form.is_valid():
@@ -21,10 +22,11 @@ def signup_client(request):
             acc = AccType.objects.create(user=user, type='client')
             acc.save()
             return redirect('accounts/login')
-    return render(request, 'signup_client.html', {'form': SignupForm()})
+    return render(request, 'signup_client.html', {'form': form})
 
 #service provider
 def signup_serviceprovider(request):
+    form = SignupForm()
     if request.method == 'POST':
         form = SignupForm(request.POST)
         if form.is_valid():
@@ -35,7 +37,7 @@ def signup_serviceprovider(request):
             acc = AccType.objects.create(user=user, type='serviceprovider')
             acc.save()
             return redirect('accounts/login')
-    return render(request, 'signup_service.html', {'form': SignupForm()})
+    return render(request, 'signup_service.html', {'form': form})
 
 @login_required(login_url='users:signup-serviceprovider')
 def dashboard(request):
