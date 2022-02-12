@@ -41,6 +41,7 @@
 
         <div class="row">
 
+            {% for list in auditorium_list %}
             {% for i in list %}
             <div class="col-lg-4">
                 <div class="box">
@@ -61,6 +62,7 @@
                     {% comment %} <p>Whole service providers verified by our team and actively screening</p> {% endcomment %}
                 </div>
             </div>
+            {% endfor %}
             {% endfor %}
 
         </div>

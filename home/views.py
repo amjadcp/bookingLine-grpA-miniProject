@@ -61,8 +61,16 @@ def after_login(request):
         
 # @login_required
 def auditoriums(request):
-    list = Auditorium.objects.all()
-    return render(request, 'auditoriums.html', {'list': list})
+    users = []
+    auditorium_list = []
+    profile_statuss = ProfileStatus.objects.filter(status='Accepted')
+    for profile_status in profile_statuss:
+        join_date = profile_status.user.date_joined.date()
+        if abs((date.today() - join_date).days) <= 365:
+            users.append(profile_status.user)
+    for user in users:
+        auditorium_list.append(Auditorium.objects.filter(user=user))
+    return render(request, 'auditoriums.html', {'auditorium_list': auditorium_list})
 
 @login_required(login_url='users:signup-client')
 def auditorium_info(request):
