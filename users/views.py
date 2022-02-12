@@ -2,7 +2,7 @@ from django.http import HttpRequest
 from django.shortcuts import render, redirect
 # from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from datetime import date
+from datetime import date, datetime
 
 from .forms import *
 from .models import *
@@ -43,6 +43,11 @@ def signup_serviceprovider(request):
 @login_required(login_url='users:signup-serviceprovider')
 def dashboard(request):
     user = User.objects.get(email=request.user)
+    join_date = user.date_joined.date()
+    if abs((date.today() - join_date).days) <= 365:
+        pay = 'true'
+    else:
+        pay = 'false'
     auditoriums = Auditorium.objects.filter(user=user)
     try:
         profile_status = ProfileStatus.objects.get(user=user)
@@ -60,6 +65,7 @@ def dashboard(request):
         'username' : user.username,
         'email' : user.email,
         'status' : status,
+        'pay' : pay,
         'auditoriums': auditoriums,
         'date' : date.today()
     }
