@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-from django.http import HttpResponse
+from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from serviceprovider.models import Book, Preview
@@ -119,12 +119,73 @@ def auditorium_book(request):
             to_time=to_time,
             message=message
         )
+
+        
+        send_mail(
+            f'Booking Request from {request.user}(bookingLine)',
+            f'''Name : {book_name}
+            Contact Number : {book_number}
+            Contact Email : {book_email}
+            Date : {date}
+            Time Slot : {from_time} - {to_time}
+            Message : {message}''',
+            'calicut673007@gmail.com',
+            ['calicut673007@gmail.com', auditorium.user],
+            fail_silently=False,
+        )
+        send_mail(
+            f'Booking Request Send (bookingLine)',
+            f'''Auditorium : {auditorium.name}
+            Name : {book_name}
+            Contact Number : {book_number}
+            Contact Email : {book_email}
+            Date : {date}
+            Time Slot : {from_time} - {to_time}
+            Message : {message}
+            
+            Service Provider will be contact you soon
+            (bookingLine)''',
+            'calicut673007@gmail.com',
+            [request.user, 'calicut673007@gmail.com'],
+            fail_silently=False,
+        )
     return JsonResponse({'message' : '1'})
 
 @login_required(login_url='users:signup-client')
 def auditorium_cancel(request,id):
     book = Book.objects.get(id=id)
     book.delete()
+    send_mail(
+            f'Booking Request Canceled by {request.user}(bookingLine)',
+            f'''Name : {book.book_name}
+            Contact Number : {book.book_number}
+            Contact Email : {book.book_email}
+            Date : {book.date}
+            Time Slot : {book.from_time} - {book.to_time}
+            Message : {book.message}
+
+            {request.user} canceled their time slot
+            (bookingLine)''',
+            'calicut673007@gmail.com',
+            [book.auditorium.user, 'calicut673007@gmail.com'],
+            fail_silently=False,
+    )
+    send_mail(
+        f'Booking Cancel Request Send (bookingLine)',
+        f'''Auditorium : {book.auditorium.name}
+        Name : {book.book_name}
+        Contact Number : {book.book_number}
+        Contact Email : {book.book_email}
+        Date : {book.date}
+        Time Slot : {book.from_time} - {book.to_time}
+        Message : {book.message}
+        
+        Your time slot canceled
+        (bookingLine)''',
+        'calicut673007@gmail.com',
+        [request.user, 'calicut673007@gmail.com'],
+        fail_silently=False,
+    )
     return redirect('users:dashboard-client')
 
 @login_required(login_url='users:signup-client')

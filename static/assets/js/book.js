@@ -7,6 +7,7 @@ $(document).ready(function () {
   document.getElementById('btn').addEventListener('click', () => {
     $('#sent-message').hide()
     $('#error-message').hide()
+    $('#loading').show()
     let id = Number(document.getElementById('btn').value)
     let csrf = document.getElementById('csrf').value
     let book_name = document.getElementById('book_name').value
@@ -61,8 +62,10 @@ $(document).ready(function () {
             dataType: 'json',
             success: (responce) => {
               if (responce.message == '1') {
+                $('#loading').hide()
                 $('#sent-message').show()
               } else if (responce.message == '0') {
+                $('#loading').hide()
                 $('#error-message').show()
               }
             },
@@ -76,8 +79,10 @@ $(document).ready(function () {
           dataType: 'json',
           success: (responce) => {
             if (responce.message == '1') {
+              $('#loading').hide()
               $('#sent-message').show()
             } else if (responce.message == '0') {
+              $('#loading').hide()
               $('#error-message').show()
             }
           },
@@ -91,8 +96,10 @@ $(document).ready(function () {
         dataType: 'json',
         success: (responce) => {
           if (responce.message == '1') {
+            $('#loading').hide()
             $('#sent-message').show()
           } else if (responce.message == '0') {
+            $('#loading').hide()
             $('#error-message').show()
           }
         },
