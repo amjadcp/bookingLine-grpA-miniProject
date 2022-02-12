@@ -168,6 +168,15 @@
                                         <td>
                                             <span class="glyphicon glyphicon-asterisk text-primary">{{book.message}}</span>                                                    
                                         </td>
+                                        <td>
+                                            {% if book.connected == False %}
+                                            <a class="btn btn-primary" href="{% url 'home:connected' book.id %}">Connected</a> 
+                                            {% elif book.connected == True %}
+                                            <a class="btn btn-danger" href="{% url 'home:remove' book.id %}">Spam</a> 
+                                            {% elif date >= book.date%}
+                                            <a class="btn btn-primary" href="{% url 'home:remove' book.id %}">Clear</a> 
+                                            {% endif %}
+                                        </td>
                                     </tr>
                                     {%endfor%}
                                 </tbody>

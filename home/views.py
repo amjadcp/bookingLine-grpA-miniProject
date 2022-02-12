@@ -121,3 +121,24 @@ def auditorium_book(request):
         )
     return JsonResponse({'message' : '1'})
 
+@login_required(login_url='users:signup-client')
+def auditorium_cancel(request,id):
+    book = Book.objects.get(id=id)
+    book.delete()
+    return redirect('users:dashboard-client')
+
+@login_required(login_url='users:signup-client')
+def connected(request,id):
+    book = Book.objects.get(id=id)
+    book.connected = True
+    book.save()
+    return redirect(f'../serviceprovider/auditorium-dashboard/{book.auditorium.user}/{book.auditorium.id}')
+
+@login_required(login_url='users:signup-client')
+def remove(request,id):
+    book = Book.objects.get(id=id)
+    book.delete()
+    return redirect(f'../serviceprovider/auditorium-dashboard/{book.auditorium.user}/{book.auditorium.id}')
+
+
+

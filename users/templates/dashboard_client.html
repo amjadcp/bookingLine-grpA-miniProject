@@ -113,7 +113,17 @@
                                         </td>
                                         <td>
                                             <strong>
+                                                <span class="glyphicon glyphicon-asterisk">Date</span>                                                  
+                                            </strong>
+                                        </td>
+                                        <td>
+                                            <strong>
                                                 <span class="glyphicon glyphicon-asterisk">Time Slot</span>                                                  
+                                            </strong>
+                                        </td>
+                                        <td>
+                                            <strong>
+                                                <span class="glyphicon glyphicon-asterisk">Contact</span>                                                  
                                             </strong>
                                         </td>
                                     </tr>
@@ -123,7 +133,20 @@
                                             <span class="glyphicon glyphicon-asterisk text-primary">{{book.auditorium.name}}</span>                                                    
                                         </td>
                                         <td>
+                                            <span class="glyphicon glyphicon-asterisk text-primary">{{book.date}}</span>                                                    
+                                        </td>
+                                        <td>
                                             <span class="glyphicon glyphicon-asterisk text-primary">{{book.from_time}} - {{book.to_time}}</span>                                                    
+                                        </td>
+                                        <td>
+                                            <span class="glyphicon glyphicon-asterisk text-primary">{{book.auditorium.number}}</span>                                                    
+                                        </td>
+                                        <td>
+                                            {% if date >= book.date %}
+                                            <p> You Can't Cancel This Slot </p>
+                                            {% else %}
+                                            <a class="btn btn-danger" href="{% url 'home:auditorium-cancel' book.id %}">Cancel</a>
+                                            {% endif %}
                                         </td>
                                     </tr>
                                     {%endfor%}

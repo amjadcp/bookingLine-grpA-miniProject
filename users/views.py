@@ -2,6 +2,7 @@ from django.http import HttpRequest
 from django.shortcuts import render, redirect
 # from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from datetime import date
 
 from .forms import *
 from .models import *
@@ -59,7 +60,8 @@ def dashboard(request):
         'username' : user.username,
         'email' : user.email,
         'status' : status,
-        'auditoriums': auditoriums
+        'auditoriums': auditoriums,
+        'date' : date.today()
     }
     
     return render(request, 'dashboard_service.html', context=context)
@@ -107,7 +109,8 @@ def dashboard_client(request):
     user = User.objects.get(email=user)
     context = {
         'books':books, 
-        'user':user
+        'user':user,
+        'date' : date.today()
         }
     return render(request, 'dashboard_client.html', context=context)
 

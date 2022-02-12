@@ -39,6 +39,7 @@ class Book(models.Model):
     from_time = models.TimeField()
     to_time = models.TimeField()
     message = models.TextField(max_length=200)
+    connected = models.BooleanField(default=False)
 
     def __str__(self) -> str:
         return f'{self.auditorium}'
