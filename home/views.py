@@ -22,13 +22,13 @@ def contact(request):
             subject=subject,
             message=message
         )
-    return redirect('home:index')
+    return redirect('home:home')
 
 def index(request):
     context = {'check' : True}
     return render(request, 'index.html', context=context)
 
-@login_required
+@login_required(login_url='/')
 def after_login(request):
     users = User.objects.all()
     user = request.user

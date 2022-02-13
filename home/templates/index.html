@@ -71,8 +71,8 @@
           <div class="carousel-item active" style="background: url(../../static/assets/img/slide/slide-1.jpg);">
               <div class="carousel-container">
                     <div class="carousel-content">
-                        <h2 class="animate__animated animate__fadeInDown">#Auditorium 1</h2>
-                        <p class="animate__animated animate__fadeInUp"> #discription </p>
+                        {% comment %} <h2 class="animate__animated animate__fadeInDown">#Auditorium 1</h2>
+                        <p class="animate__animated animate__fadeInUp"> #discription </p> {% endcomment %}
                         <div>
                           <a href="auditoriums" class="btn-menu animate__animated animate__fadeInUp scrollto"> More </a>
                           <a href="accounts/login" class="btn-book animate__animated animate__fadeInUp scrollto">Book Auditorium</a>
@@ -85,8 +85,8 @@
           <div class="carousel-item" style="background: url(../../static/assets/img/slide/slide-2.jpg);">
             <div class="carousel-container">
               <div class="carousel-content">
-                <h2 class="animate__animated animate__fadeInDown">#Auditorium 2</h2>
-                <p class="animate__animated animate__fadeInUp"> #discription </p>
+                {% comment %} <h2 class="animate__animated animate__fadeInDown">#Auditorium 2</h2>
+                <p class="animate__animated animate__fadeInUp"> #discription </p> {% endcomment %}
                 <div>
                   <a href="auditoriums" class="btn-menu animate__animated animate__fadeInUp scrollto">More</a>
                   <a href="accounts/login" class="btn-book animate__animated animate__fadeInUp scrollto">Book Auditorium</a>
@@ -99,8 +99,8 @@
            <div class="carousel-item" style="background: url(../../static/assets/img/slide/slide-3.jpg);">
             <div class="carousel-container">
               <div class="carousel-content">
-                <h2 class="animate__animated animate__fadeInDown">#Auditorium</h2>
-                <p class="animate__animated animate__fadeInUp"> #discription </p>
+                {% comment %} <h2 class="animate__animated animate__fadeInDown">#Auditorium</h2>
+                <p class="animate__animated animate__fadeInUp"> #discription </p> {% endcomment %}
                 <div>
                   <a href="auditoriums" class="btn-menu animate__animated animate__fadeInUp scrollto">More</a>
                   <a href="accounts/login" class="btn-book animate__animated animate__fadeInUp scrollto">Book Auditorium</a>
@@ -340,7 +340,7 @@
           </div>
         </div>
 
-        <form action="home:contact" method="post" role="form" class="php-email-form">
+        <form action="contact" method="post" role="form" class="php-email-form">
         {% csrf_token %}
           <div class="row">
             <div class="col-md-6 form-group">
@@ -385,7 +385,7 @@
         &copy; Copyright <strong><span>booking Line</span></strong>. All Rights Reserved
       </div>
       <div class="credits">
-        Designed and deployed by <a href="https://github.com/amjadcp/Auditorium-Booking-System-mini-project-groupA">Group A</a>
+        Designed and deployed by <a href="https://github.com/amjadcp/bookingLine-grpA-miniProject">Group A</a>
       </div>
     </div>
   </footer><!-- End Footer -->
